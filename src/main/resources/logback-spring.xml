@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<springProperty scope="context" name="logDir" source="server.tomcat.accesslog.directory" defaultValue="logs" />
+	<property name="LOG_FILE" value="${logDir}/application.log" />
+	<property name="LOG_PATTERN"
+		value="%d{'yyyy-MM-dd HH:mm:ss', Australia/Sydney} %-4r [%thread] %-5level %logger{30} correlationId:%X{correlationId} %ex - %msg%n" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+
+	<root level="WARN">
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>
